@@ -125,6 +125,3 @@ A successful pipeline run is indicated by a **green check mark ✔** in the GitH
 
 **Sri Satya Simhadri Thota**
 DevOps Engineer (Sample Project)
-
-````
-
