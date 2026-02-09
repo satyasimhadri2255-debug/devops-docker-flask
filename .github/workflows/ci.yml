@@ -38,6 +38,10 @@ jobs:
           docker logs flask-test
           exit 1
 
+      - name: Curl health endpoint
+        run: curl --fail http://localhost:5000/health
+
+
       - name: Stop container
         if: always()
         run: |
