@@ -1,127 +1,156 @@
 # DevOps Docker Flask Application
 
-This is a beginner-friendly DevOps project where a simple Python Flask web application is containerized using Docker and automated using GitHub Actions CI.
+A production-style DevOps project demonstrating Docker, CI/CD, automated testing, Docker Hub publishing, and Kubernetes deployment.
 
 ---
 
 ## 🚀 Project Overview
 
-The goal of this project is to understand the complete DevOps flow:
-- Build a simple application
-- Containerize it using Docker
-- Run it locally using Docker
-- Version control using Git & GitHub
-- Automatically build the Docker image using GitHub Actions (CI)
+This project demonstrates a complete DevOps workflow:
+
+1. Build a Flask application
+2. Containerize using Docker
+3. Automate CI with GitHub Actions
+4. Add smoke tests and automated tests
+5. Publish Docker image to Docker Hub (CI/CD)
+6. Deploy to Kubernetes with health checks
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Python** (Flask)
-- **Docker**
-- **Git & GitHub**
-- **GitHub Actions (CI)**
+- Python (Flask)
+- Docker
+- Docker Compose
+- Git & GitHub
+- GitHub Actions (CI/CD)
+- Docker Hub
+- Kubernetes (Docker Desktop)
+- Pytest
 
 ---
 
 ## 📂 Project Structure
 
-```
 
 devops-project/
 │
 ├── app.py
+├── test_app.py
 ├── requirements.txt
 ├── Dockerfile
-├── .gitignore
+├── docker-compose.yml
+├── k8s/
+│ ├── deployment.yaml
+│ └── service.yaml
 │
 └── .github/
 └── workflows/
 └── ci.yml
 
-```
 
 ---
 
-## 🧩 Application Details
+## 🧩 Application Endpoints
 
-- The Flask app exposes a single endpoint `/`
-- When accessed, it returns a simple message:
-```
-
-Hello! My first DevOps Docker app is working 🚀
-
-````
+| Endpoint | Purpose |
+|---------|---------|
+| `/` | Returns welcome message |
+| `/health` | Health check endpoint (used by CI + Kubernetes) |
 
 ---
 
-## ▶️ Run Application Without Docker
+## ▶️ Run Locally (Without Docker)
 
 ```bash
-python -m pip install flask
+pip install -r requirements.txt
 python app.py
-````
 
-Open browser:
+Open:
 
-```
 http://localhost:5000
-```
-
----
-
-## 🐳 Run Application Using Docker
-
-### Build Docker Image
-
-```bash
+🐳 Run With Docker
+Build Image
 docker build -t my-first-devops-app .
-```
-
-### Run Docker Container
-
-```bash
+Run Container
 docker run -p 5000:5000 my-first-devops-app
-```
+🐳 Run With Docker Compose
+docker compose up --build
 
-Open browser:
+Stop:
 
-```
-http://localhost:5000
-```
+docker compose down
+🔄 CI/CD Pipeline (GitHub Actions)
 
----
+On every push to main, GitHub Actions:
 
-## 🔄 CI Pipeline (GitHub Actions)
+Builds Docker image
 
-This project includes a GitHub Actions CI workflow that:
+Runs container
 
-* Runs on every push to the `main` branch
-* Checks out the code
-* Builds the Docker image automatically
+Performs smoke test (curl /)
 
-A successful pipeline run is indicated by a **green check mark ✔** in the GitHub Actions tab.
+Checks health endpoint (curl /health)
 
----
+Runs pytest tests
 
-## 📘 What I Learned
+Stops container
 
-* How to build a Flask application
-* How Docker images and containers work
-* How to write a Dockerfile
-* How to run applications inside containers
-* How GitHub Actions automates Docker builds
-* How to debug real Docker and Windows issues
+Logs into Docker Hub
 
----
+Tags and pushes image automatically
 
-## 🧠 Interview Summary
+✔ Successful run = Green check in Actions tab
 
-> “I built and Dockerized a Flask application, pushed it to GitHub, and implemented a CI pipeline using GitHub Actions that automatically builds the Docker image on every commit.”
+📦 Docker Hub Image
 
----
+Image is automatically published to:
 
-## 👤 Author
+docker.io/satyasimhadri2255/my-first-devops-app:latest
 
-**Sri Satya Simhadri Thota**
-DevOps Engineer (Sample Project)
+Pull it:
+
+docker pull satyasimhadri2255/my-first-devops-app:latest
+
+Run it:
+
+docker run -p 5000:5000 satyasimhadri2255/my-first-devops-app:latest
+☸ Kubernetes Deployment
+
+Deploy:
+
+kubectl apply -f k8s/
+
+Port forward:
+
+kubectl port-forward service/flask-service 8080:80
+
+Open:
+
+http://localhost:8080
+📘 Key DevOps Concepts Implemented
+
+Docker containerization
+
+CI automation
+
+Smoke testing in pipeline
+
+Automated unit testing (pytest)
+
+CI/CD publishing to Docker Hub
+
+Kubernetes Deployment & Service
+
+Liveness/Readiness health probes
+
+Logs and troubleshooting
+
+🧠 Interview Summary
+
+“I built a containerized Flask application and implemented a full CI/CD pipeline using GitHub Actions. The pipeline builds, tests, runs smoke checks, publishes the image to Docker Hub, and deploys it to Kubernetes with health probes configured.”
+
+👤 Author
+
+Sri Satya Simhadri Thota
+DevOps Engineer – Hands-on Project
