@@ -196,6 +196,7 @@ Debugging ImagePullBackOff and pipeline issues
 
 “I built a containerized Flask application and implemented a full CI/CD pipeline using GitHub Actions. The pipeline builds, tests, runs smoke checks, publishes the image to Docker Hub, and deploys it to Kubernetes with health probes configured.”
 
+---
 
 👤 Author
 
