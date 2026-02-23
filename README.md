@@ -198,7 +198,9 @@ Debugging ImagePullBackOff and pipeline issues
 
 ---
 
-👤 Author
+#👤 Author
 
 Sri Satya Simhadri Thota
 DevOps Engineer – Hands-on Project
+
+---
