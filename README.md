@@ -30,8 +30,8 @@ This project demonstrates a complete DevOps workflow:
 
 ---
 
-## 📂 Project Structure
 
+## 📂 Project Structure
 
 devops-project/
 │
@@ -54,7 +54,7 @@ devops-project/
 ## 🧩 Application Endpoints
 
 | Endpoint | Purpose |
-|---------|---------|
+|----------|----------|
 | `/` | Returns welcome message |
 | `/health` | Health check endpoint (used by CI + Kubernetes) |
 
@@ -62,31 +62,56 @@ devops-project/
 
 ## ▶️ Run Locally (Without Docker)
 
+Install dependencies:
+
 ```bash
 pip install -r requirements.txt
+
+
+Run the app:
+
 python app.py
+
 
 Open:
 
 http://localhost:5000
+
+
 🐳 Run With Docker
-Build Image
+
+Build image:
+
 docker build -t my-first-devops-app .
-Run Container
+
+
+Run container:
+
 docker run -p 5000:5000 my-first-devops-app
+
+
+Open:
+
+http://localhost:5000
+
+
 🐳 Run With Docker Compose
+
 docker compose up --build
+
 
 Stop:
 
 docker compose down
+
+
 🔄 CI/CD Pipeline (GitHub Actions)
 
-On every push to main, GitHub Actions:
+On every push to main, GitHub Actions automatically:
 
 Builds Docker image
 
-Runs container
+Runs the container
 
 Performs smoke test (curl /)
 
@@ -94,13 +119,15 @@ Checks health endpoint (curl /health)
 
 Runs pytest tests
 
-Stops container
+Stops and removes container
 
 Logs into Docker Hub
 
 Tags and pushes image automatically
 
-✔ Successful run = Green check in Actions tab
+✔ Successful run = Green check mark in Actions tab
+
+
 
 📦 Docker Hub Image
 
@@ -108,26 +135,41 @@ Image is automatically published to:
 
 docker.io/satyasimhadri2255/my-first-devops-app:latest
 
-Pull it:
+
+Pull image:
 
 docker pull satyasimhadri2255/my-first-devops-app:latest
 
-Run it:
+
+Run image:
 
 docker run -p 5000:5000 satyasimhadri2255/my-first-devops-app:latest
+
+
+
 ☸ Kubernetes Deployment
 
-Deploy:
+Deploy to Kubernetes:
 
 kubectl apply -f k8s/
+
+
+Check pods:
+
+kubectl get pods
+
 
 Port forward:
 
 kubectl port-forward service/flask-service 8080:80
 
+
 Open:
 
 http://localhost:8080
+
+
+
 📘 Key DevOps Concepts Implemented
 
 Docker containerization
@@ -142,13 +184,18 @@ CI/CD publishing to Docker Hub
 
 Kubernetes Deployment & Service
 
-Liveness/Readiness health probes
+Liveness and Readiness probes
 
 Logs and troubleshooting
+
+Debugging ImagePullBackOff and pipeline issues
+
+
 
 🧠 Interview Summary
 
 “I built a containerized Flask application and implemented a full CI/CD pipeline using GitHub Actions. The pipeline builds, tests, runs smoke checks, publishes the image to Docker Hub, and deploys it to Kubernetes with health probes configured.”
+
 
 👤 Author
 
