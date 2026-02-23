@@ -8,12 +8,12 @@ A production-style DevOps project demonstrating Docker, CI/CD, automated testing
 
 This project demonstrates a complete DevOps workflow:
 
-1. Build a Flask application
-2. Containerize using Docker
-3. Automate CI with GitHub Actions
-4. Add smoke tests and automated tests
-5. Publish Docker image to Docker Hub (CI/CD)
-6. Deploy to Kubernetes with health checks
+1. Build a Flask application  
+2. Containerize using Docker  
+3. Automate CI with GitHub Actions  
+4. Add smoke tests and automated tests  
+5. Publish Docker image to Docker Hub (CI/CD)  
+6. Deploy to Kubernetes with health checks  
 
 ---
 
@@ -30,10 +30,11 @@ This project demonstrates a complete DevOps workflow:
 
 ---
 
-
 ## 📂 Project Structure
 
+
 devops-project/
+
 │
 ├── app.py
 ├── test_app.py
@@ -41,12 +42,15 @@ devops-project/
 ├── Dockerfile
 ├── docker-compose.yml
 ├── k8s/
+
 │ ├── deployment.yaml
 │ └── service.yaml
 │
+
 └── .github/
 └── workflows/
 └── ci.yml
+
 
 
 ---
@@ -67,45 +71,42 @@ Install dependencies:
 ```bash
 pip install -r requirements.txt
 
-
 Run the app:
 
 python app.py
-
 
 Open:
 
 http://localhost:5000
 
+---
 
-🐳 Run With Docker
+## 🐳 Run With Docker
 
 Build image:
 
 docker build -t my-first-devops-app .
 
-
 Run container:
 
 docker run -p 5000:5000 my-first-devops-app
-
 
 Open:
 
 http://localhost:5000
 
+---
 
-🐳 Run With Docker Compose
-
+## 🐳 Run With Docker Compose
 docker compose up --build
-
 
 Stop:
 
 docker compose down
 
+---
 
-🔄 CI/CD Pipeline (GitHub Actions)
+## 🔄 CI/CD Pipeline (GitHub Actions)
 
 On every push to main, GitHub Actions automatically:
 
@@ -127,50 +128,45 @@ Tags and pushes image automatically
 
 ✔ Successful run = Green check mark in Actions tab
 
+---
 
-
-📦 Docker Hub Image
+## 📦 Docker Hub Image
 
 Image is automatically published to:
 
 docker.io/satyasimhadri2255/my-first-devops-app:latest
 
-
 Pull image:
 
 docker pull satyasimhadri2255/my-first-devops-app:latest
-
 
 Run image:
 
 docker run -p 5000:5000 satyasimhadri2255/my-first-devops-app:latest
 
+---
 
-
-☸ Kubernetes Deployment
+## ☸ Kubernetes Deployment
 
 Deploy to Kubernetes:
 
 kubectl apply -f k8s/
 
-
 Check pods:
 
 kubectl get pods
-
 
 Port forward:
 
 kubectl port-forward service/flask-service 8080:80
 
-
 Open:
 
 http://localhost:8080
 
+---
 
-
-📘 Key DevOps Concepts Implemented
+##📘 Key DevOps Concepts Implemented
 
 Docker containerization
 
@@ -190,15 +186,15 @@ Logs and troubleshooting
 
 Debugging ImagePullBackOff and pipeline issues
 
+---
 
-
-🧠 Interview Summary
+## 🧠 Interview Summary
 
 “I built a containerized Flask application and implemented a full CI/CD pipeline using GitHub Actions. The pipeline builds, tests, runs smoke checks, publishes the image to Docker Hub, and deploys it to Kubernetes with health probes configured.”
 
 ---
 
-#👤 Author
+## 👤 Author
 
 Sri Satya Simhadri Thota
 DevOps Engineer – Hands-on Project
