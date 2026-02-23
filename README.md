@@ -34,7 +34,6 @@ This project demonstrates a complete DevOps workflow:
 
 
 devops-project/
-
 │
 ├── app.py
 ├── test_app.py
@@ -42,15 +41,12 @@ devops-project/
 ├── Dockerfile
 ├── docker-compose.yml
 ├── k8s/
-
 │ ├── deployment.yaml
 │ └── service.yaml
 │
-
 └── .github/
 └── workflows/
 └── ci.yml
-
 
 
 ---
@@ -78,10 +74,7 @@ python app.py
 Open:
 
 http://localhost:5000
-
----
-
-## 🐳 Run With Docker
+🐳 Run With Docker
 
 Build image:
 
@@ -94,19 +87,13 @@ docker run -p 5000:5000 my-first-devops-app
 Open:
 
 http://localhost:5000
-
----
-
-## 🐳 Run With Docker Compose
+🐳 Run With Docker Compose
 docker compose up --build
 
 Stop:
 
 docker compose down
-
----
-
-## 🔄 CI/CD Pipeline (GitHub Actions)
+🔄 CI/CD Pipeline (GitHub Actions)
 
 On every push to main, GitHub Actions automatically:
 
@@ -128,9 +115,7 @@ Tags and pushes image automatically
 
 ✔ Successful run = Green check mark in Actions tab
 
----
-
-## 📦 Docker Hub Image
+📦 Docker Hub Image
 
 Image is automatically published to:
 
@@ -143,12 +128,9 @@ docker pull satyasimhadri2255/my-first-devops-app:latest
 Run image:
 
 docker run -p 5000:5000 satyasimhadri2255/my-first-devops-app:latest
+☸ Kubernetes Deployment
 
----
-
-## ☸ Kubernetes Deployment
-
-Deploy to Kubernetes:
+Deploy:
 
 kubectl apply -f k8s/
 
@@ -163,10 +145,7 @@ kubectl port-forward service/flask-service 8080:80
 Open:
 
 http://localhost:8080
-
----
-
-##📘 Key DevOps Concepts Implemented
+📘 Key DevOps Concepts Implemented
 
 Docker containerization
 
@@ -186,17 +165,14 @@ Logs and troubleshooting
 
 Debugging ImagePullBackOff and pipeline issues
 
----
-
-## 🧠 Interview Summary
+🧠 Interview Summary
 
 “I built a containerized Flask application and implemented a full CI/CD pipeline using GitHub Actions. The pipeline builds, tests, runs smoke checks, publishes the image to Docker Hub, and deploys it to Kubernetes with health probes configured.”
 
----
-
-## 👤 Author
+👤 Author
 
 Sri Satya Simhadri Thota
 DevOps Engineer – Hands-on Project
+
 
 ---
