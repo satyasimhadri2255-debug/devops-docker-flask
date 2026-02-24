@@ -1,6 +1,6 @@
 # DevOps Docker Flask Application
 
-A production-style DevOps project demonstrating Docker, CI/CD, automated testing, Docker Hub publishing, and Kubernetes deployment.
+A production-style DevOps project demonstrating Docker, CI/CD, automated testing, Docker Hub publishing, and Kubernetes deployment with Ingress routing.
 
 ---
 
@@ -14,6 +14,7 @@ This project demonstrates a complete DevOps workflow:
 4. Add smoke tests and automated tests  
 5. Publish Docker image to Docker Hub (CI/CD)  
 6. Deploy to Kubernetes with health checks  
+7. Expose application using Kubernetes Ingress  
 
 ---
 
@@ -26,6 +27,7 @@ This project demonstrates a complete DevOps workflow:
 - GitHub Actions (CI/CD)
 - Docker Hub
 - Kubernetes (Docker Desktop)
+- NGINX Ingress Controller
 - Pytest
 
 ---
@@ -42,7 +44,8 @@ devops-project/
 ├── docker-compose.yml
 ├── k8s/
 │ ├── deployment.yaml
-│ └── service.yaml
+│ ├── service.yaml
+│ └── ingress.yaml
 │
 └── .github/
 └── workflows/
@@ -137,14 +140,27 @@ kubectl apply -f k8s/
 Check pods:
 
 kubectl get pods
-
-Port forward:
-
+Access Using Port Forward (Optional)
 kubectl port-forward service/flask-service 8080:80
 
 Open:
 
 http://localhost:8080
+🌐 Kubernetes Ingress (No Port Forward Required)
+
+After installing the NGINX Ingress Controller and applying ingress.yaml:
+
+kubectl apply -f k8s/ingress.yaml
+
+Access application directly:
+
+http://localhost/
+http://localhost/health
+
+Traffic flow:
+
+Browser → Ingress Controller → Service → Pod
+
 📘 Key DevOps Concepts Implemented
 
 Docker containerization
@@ -161,13 +177,15 @@ Kubernetes Deployment & Service
 
 Liveness and Readiness probes
 
+NGINX Ingress routing
+
 Logs and troubleshooting
 
 Debugging ImagePullBackOff and pipeline issues
 
 🧠 Interview Summary
 
-“I built a containerized Flask application and implemented a full CI/CD pipeline using GitHub Actions. The pipeline builds, tests, runs smoke checks, publishes the image to Docker Hub, and deploys it to Kubernetes with health probes configured.”
+“I built a containerized Flask application and implemented a full CI/CD pipeline using GitHub Actions. The pipeline builds, tests, runs smoke checks, publishes the image to Docker Hub, and deploys it to Kubernetes with health probes and Ingress routing configured.”
 
 👤 Author
 
