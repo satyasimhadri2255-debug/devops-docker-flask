@@ -17,6 +17,13 @@ spec:
           image: satyasimhadri2255/my-first-devops-app:latest
           ports:
             - containerPort: 5000
+
+          # ✅ Add CPU/Memory requests (required for HPA)
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+
           livenessProbe:
             httpGet:
               path: /health

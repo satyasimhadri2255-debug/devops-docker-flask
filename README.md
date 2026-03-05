@@ -1,6 +1,6 @@
 # DevOps Docker Flask Application
 
-A production-style DevOps project demonstrating Docker, CI/CD, automated testing, Docker Hub publishing, and Kubernetes deployment with Ingress routing.
+A production-style DevOps project demonstrating Docker, CI/CD, automated testing, Docker Hub publishing, and Kubernetes deployment with Ingress routing and autoscaling.
 
 ---
 
@@ -15,6 +15,7 @@ This project demonstrates a complete DevOps workflow:
 5. Publish Docker image to Docker Hub (CI/CD)  
 6. Deploy to Kubernetes with health checks  
 7. Expose application using Kubernetes Ingress  
+8. Implement autoscaling using Kubernetes HPA  
 
 ---
 
@@ -29,6 +30,7 @@ This project demonstrates a complete DevOps workflow:
 - Kubernetes (Docker Desktop)
 - NGINX Ingress Controller
 - Pytest
+- Horizontal Pod Autoscaler (HPA)
 
 ---
 
@@ -42,10 +44,12 @@ devops-project/
 ├── requirements.txt
 ├── Dockerfile
 ├── docker-compose.yml
+│
 ├── k8s/
 │ ├── deployment.yaml
 │ ├── service.yaml
-│ └── ingress.yaml
+│ ├── ingress.yaml
+│ └── hpa.yaml
 │
 └── .github/
 └── workflows/
@@ -57,29 +61,29 @@ devops-project/
 ## 🧩 Application Endpoints
 
 | Endpoint | Purpose |
-|----------|----------|
+|--------|--------|
 | `/` | Returns welcome message |
 | `/health` | Health check endpoint (used by CI + Kubernetes) |
 
 ---
 
-## ▶️ Run Locally (Without Docker)
+# ▶️ Run Locally (Without Docker)
 
 Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 
-Run the app:
+Run the application:
 
 python app.py
 
-Open:
+Open browser:
 
 http://localhost:5000
 🐳 Run With Docker
 
-Build image:
+Build Docker image:
 
 docker build -t my-first-devops-app .
 
@@ -87,20 +91,23 @@ Run container:
 
 docker run -p 5000:5000 my-first-devops-app
 
-Open:
+Open browser:
 
 http://localhost:5000
 🐳 Run With Docker Compose
+
+Start application:
+
 docker compose up --build
 
-Stop:
+Stop application:
 
 docker compose down
 🔄 CI/CD Pipeline (GitHub Actions)
 
-On every push to main, GitHub Actions automatically:
+On every push to the main branch, GitHub Actions automatically:
 
-Builds Docker image
+Builds the Docker image
 
 Runs the container
 
@@ -108,36 +115,36 @@ Performs smoke test (curl /)
 
 Checks health endpoint (curl /health)
 
-Runs pytest tests
+Runs pytest unit tests
 
 Stops and removes container
 
 Logs into Docker Hub
 
-Tags and pushes image automatically
+Tags and pushes Docker image automatically
 
-✔ Successful run = Green check mark in Actions tab
+Successful pipeline runs show a green check mark in the Actions tab.
 
 📦 Docker Hub Image
 
-Image is automatically published to:
+Image is automatically published to Docker Hub:
 
 docker.io/satyasimhadri2255/my-first-devops-app:latest
 
-Pull image:
+Pull the image:
 
 docker pull satyasimhadri2255/my-first-devops-app:latest
 
-Run image:
+Run the image:
 
 docker run -p 5000:5000 satyasimhadri2255/my-first-devops-app:latest
 ☸ Kubernetes Deployment
 
-Deploy:
+Deploy resources:
 
 kubectl apply -f k8s/
 
-Check pods:
+Check running pods:
 
 kubectl get pods
 Access Using Port Forward (Optional)
@@ -148,7 +155,7 @@ Open:
 http://localhost:8080
 🌐 Kubernetes Ingress (No Port Forward Required)
 
-After installing the NGINX Ingress Controller and applying ingress.yaml:
+After installing the NGINX Ingress Controller:
 
 kubectl apply -f k8s/ingress.yaml
 
@@ -160,14 +167,36 @@ http://localhost/health
 Traffic flow:
 
 Browser → Ingress Controller → Service → Pod
+📈 Kubernetes Autoscaling (HPA)
 
+Horizontal Pod Autoscaler automatically scales the Flask application based on CPU usage.
+
+Configuration:
+
+Minimum pods: 1
+
+Maximum pods: 3
+
+Target CPU utilization: 50%
+
+Apply HPA:
+
+kubectl apply -f k8s/hpa.yaml
+
+Check autoscaler:
+
+kubectl get hpa
+
+Watch scaling:
+
+kubectl get pods -w
 📘 Key DevOps Concepts Implemented
 
 Docker containerization
 
-CI automation
+CI automation with GitHub Actions
 
-Smoke testing in pipeline
+Smoke testing in CI pipeline
 
 Automated unit testing (pytest)
 
@@ -179,13 +208,15 @@ Liveness and Readiness probes
 
 NGINX Ingress routing
 
+Horizontal Pod Autoscaler (HPA)
+
 Logs and troubleshooting
 
-Debugging ImagePullBackOff and pipeline issues
+Debugging pipeline and Kubernetes issues
 
 🧠 Interview Summary
 
-“I built a containerized Flask application and implemented a full CI/CD pipeline using GitHub Actions. The pipeline builds, tests, runs smoke checks, publishes the image to Docker Hub, and deploys it to Kubernetes with health probes and Ingress routing configured.”
+"I built a containerized Flask application and implemented a complete CI/CD pipeline using GitHub Actions. The pipeline automatically builds, tests, and pushes Docker images to Docker Hub. The application is deployed to Kubernetes with health probes, Ingress routing, and Horizontal Pod Autoscaling configured."
 
 👤 Author
 
@@ -194,3 +225,4 @@ DevOps Engineer – Hands-on Project
 
 
 ---
+
